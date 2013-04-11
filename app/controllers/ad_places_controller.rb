@@ -1,5 +1,8 @@
 class AdPlacesController < ApplicationController
   before_filter :authenticate_user!
+
+  helper_method :all_banners, :checked_banners
+
   # GET /ad_places
   # GET /ad_places.json
   def index
@@ -27,7 +30,6 @@ class AdPlacesController < ApplicationController
   # GET /ad_places/new.json
   def new
     @ad_place = AdPlace.new
-    @banners = Banner.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,7 +40,6 @@ class AdPlacesController < ApplicationController
   # GET /ad_places/1/edit
   def edit
     @ad_place = AdPlace.find(params[:id])
-    @banners = Banner.all
   end
 
   # POST /ad_places
@@ -83,5 +84,15 @@ class AdPlacesController < ApplicationController
       format.html { redirect_to ad_places_url }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def all_banners
+    @all_banners ||= Banner.all
+  end
+
+  def checked_banners
+    @checked_banners ||= @ad_place.banners.map(&:id)
   end
 end

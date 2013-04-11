@@ -22,14 +22,14 @@
     </strong>
   </p>
 
-  <% if @banners.count == 0 %>
+  <% if all_banners.count == 0 %>
     <p>
       Please add banners to choose it here.
     </p>
   <% end %>
 
-  <% @banners.each do |banner| %>
-    <% if (@ad_place.banners.map(&:id).include?(banner.id)) then checked = true else checked = false end %>
+  <% all_banners.each do |banner| %>
+    <% if checked_banners.include?(banner.id) then checked = true else checked = false end %>
     <p>
       <%= check_box_tag "ad_place[banner_ids][]", banner.id, checked %> <%= banner.name %>
       <%= image_tag banner.image(:thumb) %>

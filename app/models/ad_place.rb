@@ -7,7 +7,7 @@ class AdPlace < ActiveRecord::Base
   before_create :generate_code
   after_save :update_placements
 
-  # accepts_nested_attributes_for :banners
+  validates_presence_of :name
 
   private
 

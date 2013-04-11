@@ -8,6 +8,8 @@ class Banner < ActiveRecord::Base
 
   after_save :update_placements
 
+  validates_presence_of :name
+
   private
 
   def update_placements
