@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @banner.name %>
+</p>
+
+<p>
+  <%= image_tag @banner.image %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= link_to @banner.url, @banner.url, :target => "_blank" %>
+</p>
+
+<p>
+  <b>Show max:</b>
+  <%= @banner.show_max %>
+</p>
+
+
+<%= link_to 'Edit', edit_banner_path(@banner) %> |
+<%= link_to 'Back', banners_path %>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Banners</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div style="text-align: right;">
+	<% if user_signed_in? %>
+		Welcome, <b><%= current_user.email %></b><br />
+		<%= link_to "Logout", destroy_user_session_url, :method => :delete %>
+	<% end %>
+</div>
+
+<div class="main_layout">
+	<%= yield %>
+</div>
+
+</body>
+</html>

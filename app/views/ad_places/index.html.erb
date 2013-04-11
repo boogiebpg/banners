@@ -1,0 +1,33 @@
+<h1>All AdPlaces</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ad_places.each do |ad_place| %>
+  <tr>
+    <td><%= ad_place.name %></td>
+    <td><%= text_field_tag "insert_code#{ad_place.id}", "#{ad_place.code}", :size => 32, :readonly => true %></td>
+    <td><%= link_to 'Show', ad_place %></td>
+    <td><%= link_to 'Edit', edit_ad_place_path(ad_place) %></td>
+    <td><%= link_to 'Delete', ad_place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <%= paginate @ad_places %>
+</p>
+
+<br />
+
+<%= link_to 'New AdPlace', new_ad_place_path %>
+
+<p>
+  <%= link_to 'Banners Page', banners_path %>
+</p>

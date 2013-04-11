@@ -1,0 +1,44 @@
+<%= form_for(@ad_place) do |f| %>
+  <% if @ad_place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ad_place.errors.count, "error") %> prohibited this ad_place from being saved:</h2>
+
+      <ul>
+      <% @ad_place.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <p>
+    <strong>
+      Select banners to link to AdPlace
+    </strong>
+  </p>
+
+  <% if @banners.count == 0 %>
+    <p>
+      Please add banners to choose it here.
+    </p>
+  <% end %>
+
+  <% @banners.each do |banner| %>
+    <% if (@ad_place.banners.map(&:id).include?(banner.id)) then checked = true else checked = false end %>
+    <p>
+      <%= check_box_tag "ad_place[banner_ids][]", banner.id, checked %> <%= banner.name %>
+      <%= image_tag banner.image(:thumb) %>
+    </p>
+  <% end %>
+
+ 
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

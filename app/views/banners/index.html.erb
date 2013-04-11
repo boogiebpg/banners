@@ -1,0 +1,41 @@
+<h1>All Banners</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Thumb</th>
+    <th>Url</th>
+    <th>Clicks count</th>
+    <th>Show count</th>
+    <th>Show max</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @banners.each do |banner| %>
+  <tr>
+    <td><%= banner.name %></td>
+    <td><%= image_tag banner.image.url(:thumb) %></td>
+    <td><%= link_to banner.url, banner.url, :target => "_blank" %></td>
+    <td><%= banner.placements.map(&:click_count).inject{|sum,x| sum + x.to_i }.to_i %></td>
+    <td><%= banner.show_count %></td>
+    <td><%= banner.show_max %></td>
+    <td><%= link_to 'Show', banner %></td>
+    <td><%= link_to 'Edit', edit_banner_path(banner) %></td>
+    <td><%= link_to 'Delete', banner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <%= paginate @banners %>
+</p>
+
+<br />
+
+<%= link_to 'New Banner', new_banner_path %>
+
+<p>
+  <%= link_to 'AdPlaces Page', root_path %>
+</p>

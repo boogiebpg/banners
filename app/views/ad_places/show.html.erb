@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @ad_place.name %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @ad_place.code %>
+</p>
+
+<h3>Banners statistics:</h3>
+
+<table>
+  <tr>
+    <th>Banner</th>
+    <th>Url</th>
+    <th>Clicks count</th>
+    <th>Show count</th>
+    <th>Show max</th>
+  </tr>
+
+<% @placements.each do |placement| %>
+  <tr>
+    <td><%= image_tag placement.banner.image.url(:thumb) %></td>
+    <td><%= link_to placement.banner.url, placement.banner.url, :target => "_blank" %></td>
+    <td><%= placement.click_count.to_i %></td>
+    <td><%= placement.show_count.to_i %></td>
+    <td><%= placement.show_max.to_i %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_ad_place_path(@ad_place) %> |
+<%= link_to 'Back', ad_places_path %>
