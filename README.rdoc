@@ -22,3 +22,8 @@ Banners - баннера
 <div class="place_for_banner" id="{CODE}"></div>
 
 где {CODE} - код, автоматически сгенерированный для площадки.
+
+== Дамп БД
+
+Находится здесь db/data.yml
+Загрузка - rake db:data:load
